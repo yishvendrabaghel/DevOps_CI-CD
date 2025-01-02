@@ -90,8 +90,9 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.email "ykbskb@gmail.com"
-        git config --global user.name "Yishu Baghel"
-        git add helm/go-web-app-chart/values.yaml
-        git commit -m "Update tag in Helm chart"
-        git push
+          git config --global user.email "ykbskb@gmail.com"
+          git config --global user.name "Yishu Baghel"
+          git pull origin main --rebase       # Pull latest changes and rebase
+          git add helm/go-web-app-chart/values.yaml
+          git commit -m "Update tag in Helm chart" || echo "No changes to commit"
+          git push origin main
